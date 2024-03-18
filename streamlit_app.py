@@ -3,6 +3,12 @@ from transformers import SeamlessM4Tv2ForSpeechToText
 # streamlit_audio_recorder by stefanrmmr (rs. analytics) - version January 2023
 
 from st_audiorec import st_audiorec
+from transformers import SeamlessM4Tv2Model, AutoProcessor
+import torch
+
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
+
+
 
 # DESIGN implement changes to the standard streamlit UI/UX
 # --> optional, not relevant for the functionality of the component!
