@@ -7,7 +7,11 @@ from transformers import SeamlessM4Tv2Model, AutoProcessor
 import torch
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
+processor = AutoProcessor.from_pretrained("facebook/seamless-m4t-v2-large")
+model = SeamlessM4Tv2Model.from_pretrained("facebook/seamless-m4t-v2-large")
 
+# process input
+# audio_inputs = processor(audios=audio_sample["array"], return_tensors="pt").to(device)
 
 
 # DESIGN implement changes to the standard streamlit UI/UX
@@ -29,7 +33,7 @@ st.markdown('''<style>.css-nlntq9 a {color: #ff4c4b;}</style>''',
 def audiorec_demo_app():
 
     # TITLE and Creator information
-    st.title('streamlit audio recorder')
+    st.title('Запись аудио для заполнения анкеты Лист оценки риска по Морзе ')
     st.markdown('Implemented by 3MIS')
     st.write('\n\n')
 
