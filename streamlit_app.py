@@ -6,12 +6,15 @@ from st_audiorec import st_audiorec
 from transformers import SeamlessM4Tv2Model, AutoProcessor
 import torch
 
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
-processor = AutoProcessor.from_pretrained("facebook/seamless-m4t-v2-large")
-model = SeamlessM4Tv2Model.from_pretrained("facebook/seamless-m4t-v2-large")
+# device = "cuda:0" if torch.cuda.is_available() else "cpu"
+# processor = AutoProcessor.from_pretrained("facebook/seamless-m4t-v2-large")
+# model = SeamlessM4Tv2Model.from_pretrained("facebook/seamless-m4t-v2-large")
 
 # process input
 # audio_inputs = processor(audios=audio_sample["array"], return_tensors="pt").to(device)
+
+import speech_recognition as sr
+
 
 
 # DESIGN implement changes to the standard streamlit UI/UX
@@ -58,6 +61,14 @@ def audiorec_demo_app():
         col_playback, col_space = st.columns([0.58,0.42])
         with col_playback:
             st.audio(wav_audio_data, format='audio/wav')
+            r = sr.Recognizer()
+            audio = r.record(sr.AudioFile((wav_audio_data))
+            
+            try:
+                s = r.recognize_google(audio)
+                st.write("Text: "+s)
+            except Exception as e:
+                st.write("Exception: "+str(e))
 
 
 if __name__ == '__main__':
