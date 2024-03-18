@@ -63,12 +63,13 @@ def audiorec_demo_app():
             st.audio(wav_audio_data, format='audio/wav')
             r = sr.Recognizer()
             audio = r.record(sr.AudioFile((wav_audio_data))
-            
-            try:
-                s = r.recognize_google(audio)
-                st.write("Text: "+s)
-            except Exception as e:
-                st.write("Exception: "+str(e))
+            s = r.recognize_google(audio)
+            st.write("Text: "+s)            
+            # try:
+            #     s = r.recognize_google(audio)
+            #     st.write("Text: "+s)
+            # except Exception as e:
+            #     st.write("Exception: "+str(e))
 
 
 if __name__ == '__main__':
