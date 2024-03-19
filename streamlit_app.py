@@ -63,7 +63,7 @@ def audiorec_demo_app():
             st.audio(wav_audio_data, format='audio/wav')
             r = sr.Recognizer()
             audio = r.listen(sr.AudioFile((wav_audio_data))
-            s = r.recognize_google(audio)
+            s = r.recognize_google(audio, language="ru-RU")
             st.write("Text: "+s)            
             # try:
             #     s = r.recognize_google(audio)
